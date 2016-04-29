@@ -2,5 +2,5 @@
 
 Using the Azure spatial_database, where __bold__ text is the table name and _italic_ text is a variable in the table:
 
+- [ ] add label of mascon number to the cartopy plot. Use the centroid method on the shapely object
 - [ ] write a SQL query to generate a sum of _area_ from __modern__ GROUP BY _geom_ of __mascon_fit__
-- [ ] other tasks

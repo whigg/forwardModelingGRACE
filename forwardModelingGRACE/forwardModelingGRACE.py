@@ -75,9 +75,9 @@ all_sum.columns = ['GRACE','delta','mod','mod+delta']
 
 # now we will plot both a map and the data for each of 3 different regions in Alaska
 
-# ______________________
-# Western Gulf of Alaska
-# ______________________
+# ____________________________
+# Western Gulf of Alaska : MAP
+# ____________________________
 
 masconGeoms = pd.read_sql('SELECT ST_AsText(geom) AS geom FROM mascon_fit WHERE version = 14 AND mascon IN (1484, 1485, 1480, 1481, 1482, 1483, 1473, 1474, 1475, 1463, 1464, 1465, 1466, 1453, 1454, 1455, 1447)', engine)
 
@@ -106,7 +106,6 @@ for i in range(4):
     else:
         extent[i] += correction
 imagery = MapQuestOSM()
-#imagery = MapQuestOpenAerial()
 ax = plt.axes(projection=imagery.crs)
 ax.set_extent(extent, geodetic)
 #ax.coastlines(resolution='100m')
@@ -122,6 +121,12 @@ gl.xformatter = LONGITUDE_FORMATTER
 gl.yformatter = LATITUDE_FORMATTER
 gl.xlabel_style = {'size': 10, 'color': 'black'}
 gl.ylabel_style = {'size': 10, 'color': 'black'}
+
+
+# ______________________________
+# Western Gulf of Alaska : PLOTS
+# ______________________________
+
 matplotlib.style.use('seaborn-poster')
 nr = 6
 nc = 4
@@ -146,7 +151,10 @@ for i in range(nr*nc):
     except:
         axes[plotPos[0],plotPos[1]].axis('off')
 
-# Eastern GOA
+
+# ______________________________
+# Eastern Gulf of Alaska : PLOTS
+# ______________________________
 
 %matplotlib inline
 matplotlib.style.use('seaborn-poster')
@@ -172,7 +180,10 @@ for i in range(nr*nc):
     except:
         axes[plotPos[0],plotPos[1]].axis('off')
 
-# southeastern GOA
+
+# ___________________________________
+# Southeastern Gulf of Alaska : PLOTS
+# ___________________________________
 
 %matplotlib inline
 matplotlib.style.use('seaborn-poster')
