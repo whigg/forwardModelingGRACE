@@ -79,7 +79,8 @@ all_sum.columns = ['GRACE','delta','mod','mod+delta']
 # Western Gulf of Alaska : MAP
 # ____________________________
 
-masconGeoms = pd.read_sql('SELECT ST_AsText(geom) AS geom FROM mascon_fit WHERE version = 14 AND mascon IN (1484, 1485, 1480, 1481, 1482, 1483, 1473, 1474, 1475, 1463, 1464, 1465, 1466, 1453, 1454, 1455, 1447)', engine)
+masconGeoms = pd.read_sql('SELECT mascon, ST_AsText(geom) AS geom FROM mascon_fit WHERE version = 14 AND mascon IN (1484, 1485, 1480, 1481, 1482, 1483, 1473, 1474, 1475, 1463, 1464, 1465, 1466, 1453, 1454, 1455, 1447)', engine)
+
 
 masconShapely = []
 for i in range(len(masconGeoms)):
