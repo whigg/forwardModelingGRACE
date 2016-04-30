@@ -123,6 +123,8 @@ gl.yformatter = LATITUDE_FORMATTER
 gl.xlabel_style = {'size': 10, 'color': 'black'}
 gl.ylabel_style = {'size': 10, 'color': 'black'}
 
+fig = ax.get_figure()
+fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\westernMap.pdf')
 
 # ______________________________
 # Western Gulf of Alaska : PLOTS
@@ -152,6 +154,7 @@ for i in range(nr*nc):
     except:
         axes[plotPos[0],plotPos[1]].axis('off')
 
+fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\westernPlot.pdf')
 
 # ______________________________
 # Eastern Gulf of Alaska : PLOTS
@@ -180,6 +183,7 @@ for i in range(nr*nc):
     except:
         axes[plotPos[0],plotPos[1]].axis('off')
 
+fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\easternPlot.pdf')
 
 # ___________________________________
 # Southeastern Gulf of Alaska : PLOTS
@@ -208,3 +212,5 @@ for i in range(nr*nc):
         axes[plotPos[0],plotPos[1]].get_xaxis().set_visible(False)
     except:
         axes[plotPos[0],plotPos[1]].axis('off')
+
+fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\southeasternPlot.pdf')
