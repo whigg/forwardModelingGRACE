@@ -156,6 +156,58 @@ for i in range(nr*nc):
 
 fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\westernPlot.pdf')
 
+
+# ____________________________
+# Eastern Gulf of Alaska : MAP
+# ____________________________
+
+masconGeoms = pd.read_sql('SELECT mascon, ST_AsText(geom) AS geom FROM mascon_fit WHERE version = 14 AND mascon IN (1476, 1477, 1478, 1467, 1468, 1469, 1470, 1456, 1457, 1458, 1459, 1448, 1449)', engine)
+
+
+masconShapely = []
+for i in range(len(masconGeoms)):
+    masconShapely.append(shwk.loads(masconGeoms.geom[i]))
+
+# Gets the longitude/latitude bounds for a glacier and assigns it to local variables. This is used in the plotting 
+# below to define the plot extent
+longLatQuery = ("SELECT MIN(g.lowLong) AS lowLong, MAX(g.highLong) AS highLong, MIN(g.lowLat) \
+                AS lowLat, MAX(g.highLat) AS highLat FROM (SELECT ST_Xmin(geom) as lowLong, \
+                ST_XMax(geom) as highLong, ST_YMin(geom) as lowLat, ST_YMax(geom) as highLat \
+                FROM mascon_fit WHERE version = 14 AND mascon IN (1476, 1477, 1478, 1467, 1468, \
+                1469, 1470, 1456, 1457, 1458, 1459, 1448, 1449)) AS g")
+                
+longLatDataFrame = pd.read_sql_query(longLatQuery, engine)
+
+plt.figure(figsize=(9,5))
+geodetic = ccrs.Geodetic(globe=ccrs.Globe(datum='WGS84'))
+extent = longLatDataFrame.values.tolist()[0]
+# this is to put a bit of a buffer around the map
+correction = 1.0
+for i in range(4):
+    if i % 2 == 0:
+        extent[i] -= correction
+    else:
+        extent[i] += correction
+imagery = MapQuestOSM()
+ax = plt.axes(projection=imagery.crs)
+ax.set_extent(extent, geodetic)
+#ax.coastlines(resolution='100m')
+ax.add_image(imagery, 7)
+ax.add_feature(cf.ShapelyFeature(masconShapely,geodetic,edgecolor='red', facecolor='none'))
+
+gl = ax.gridlines(draw_labels=True,
+                  linewidth=2, color='gray', alpha=0.5, linestyle='--')
+gl.xlabels_top = False
+gl.ylabels_left = False
+gl.xlines = False
+gl.xformatter = LONGITUDE_FORMATTER
+gl.yformatter = LATITUDE_FORMATTER
+gl.xlabel_style = {'size': 10, 'color': 'black'}
+gl.ylabel_style = {'size': 10, 'color': 'black'}
+
+fig = ax.get_figure()
+fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\easternMap.pdf')
+
 # ______________________________
 # Eastern Gulf of Alaska : PLOTS
 # ______________________________
@@ -184,6 +236,58 @@ for i in range(nr*nc):
         axes[plotPos[0],plotPos[1]].axis('off')
 
 fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\easternPlot.pdf')
+
+
+# _________________________________
+# Southeastern Gulf of Alaska : MAP
+# _________________________________
+
+masconGeoms = pd.read_sql('SELECT mascon, ST_AsText(geom) AS geom FROM mascon_fit WHERE version = 14 AND mascon IN (1460, 1461, 1450, 1451, 1444, 1445, 1439, 1440, 1441, 1436, 1437, 1438, 1434, 1435, 1432)', engine)
+
+
+masconShapely = []
+for i in range(len(masconGeoms)):
+    masconShapely.append(shwk.loads(masconGeoms.geom[i]))
+
+# Gets the longitude/latitude bounds for a glacier and assigns it to local variables. This is used in the plotting 
+# below to define the plot extent
+longLatQuery = ("SELECT MIN(g.lowLong) AS lowLong, MAX(g.highLong) AS highLong, MIN(g.lowLat) \
+                AS lowLat, MAX(g.highLat) AS highLat FROM (SELECT ST_Xmin(geom) as lowLong, \
+                ST_XMax(geom) as highLong, ST_YMin(geom) as lowLat, ST_YMax(geom) as highLat \
+                FROM mascon_fit WHERE version = 14 AND mascon IN (1460, 1461, 1450, 1451, 1444, \
+                1445, 1439, 1440, 1441, 1436, 1437, 1438, 1434, 1435, 1432)) AS g")
+                
+longLatDataFrame = pd.read_sql_query(longLatQuery, engine)
+
+plt.figure(figsize=(9,5))
+geodetic = ccrs.Geodetic(globe=ccrs.Globe(datum='WGS84'))
+extent = longLatDataFrame.values.tolist()[0]
+# this is to put a bit of a buffer around the map
+correction = 1.0
+for i in range(4):
+    if i % 2 == 0:
+        extent[i] -= correction
+    else:
+        extent[i] += correction
+imagery = MapQuestOSM()
+ax = plt.axes(projection=imagery.crs)
+ax.set_extent(extent, geodetic)
+#ax.coastlines(resolution='100m')
+ax.add_image(imagery, 7)
+ax.add_feature(cf.ShapelyFeature(masconShapely,geodetic,edgecolor='red', facecolor='none'))
+
+gl = ax.gridlines(draw_labels=True,
+                  linewidth=2, color='gray', alpha=0.5, linestyle='--')
+gl.xlabels_top = False
+gl.ylabels_left = False
+gl.xlines = False
+gl.xformatter = LONGITUDE_FORMATTER
+gl.yformatter = LATITUDE_FORMATTER
+gl.xlabel_style = {'size': 10, 'color': 'black'}
+gl.ylabel_style = {'size': 10, 'color': 'black'}
+
+fig = ax.get_figure()
+fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\southeasternMap.pdf')
 
 # ___________________________________
 # Southeastern Gulf of Alaska : PLOTS
