@@ -318,3 +318,5 @@ for i in range(nr*nc):
         axes[plotPos[0],plotPos[1]].axis('off')
 
 fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\southeasternPlot.pdf')
+
+fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\southeasternPlot.pdf')
