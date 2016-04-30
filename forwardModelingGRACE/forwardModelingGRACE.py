@@ -157,7 +157,6 @@ for i in range(nr*nc):
 # Eastern Gulf of Alaska : PLOTS
 # ______________________________
 
-%matplotlib inline
 matplotlib.style.use('seaborn-poster')
 nr = 4
 nc = 4
@@ -186,7 +185,6 @@ for i in range(nr*nc):
 # Southeastern Gulf of Alaska : PLOTS
 # ___________________________________
 
-%matplotlib inline
 matplotlib.style.use('seaborn-poster')
 nr = 7
 nc = 3
