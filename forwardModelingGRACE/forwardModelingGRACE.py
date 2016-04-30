@@ -17,8 +17,6 @@ from cartopy.io.img_tiles import MapQuestOpenAerial
 from cartopy.io.img_tiles import MapQuestOSM
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 
-import warnings
-warnings.filterwarnings('ignore')
 
 #receive credentials via settings file
 cs = getattr(s, 'localhost_SurfaceBook')
