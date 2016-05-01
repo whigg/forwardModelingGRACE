@@ -24,6 +24,7 @@
 \usepackage{igsnatbib}
 \usepackage{stfloats}
 \usepackage{graphicx}
+\usepackage[english]{babel}        % language english
 
 % the default is for unnumbered section heads
 % if you really must have numbered sections, remove
@@ -40,16 +41,17 @@
 
 \title[GRACE Forward Modeling]{GRACE forward modeling of Gulf of Alaska water balances}
 
-\author[Arendt and others]{Anthony A. ARENDT,$^1$ Scott B. LUTHCKE,$^2$ Jordan BEAMER,$^3$ Braynt LOOMIS, $^2$ David HILL,$^3$}
+\author[Arendt and others]{Authorship TBD}
 
-\affiliation{%
-$^1$Applied Physics Laboratory, University of Washington \\ E-mail: arendta@uw.edu \\ $^2$Planetary Geodynamics Laboratory, NASA Goddard Space Flight Center, Code 698, Greenbelt, MD, 20771\\ $^3$ School of Civil and Construction Engineering, Oregon State University, Corvallis, OR, 97331, USA}
+%\affiliation{%
+%$^1$Applied Physics Laboratory, University of Washington \\ E-mail: arendta@uw.edu \\ $^2$Planetary Geodynamics Laboratory, NASA Goddard Space Flight Center, Code 698, Greenbelt, MD, 20771\\ $^3$ School of Civil and Construction Engineering, Oregon State University, Corvallis, OR, 97331, USA}
 
 \abstract{.}
 
 \maketitle
 
 \section{Introduction}
+
 
 
 \citep{beamer_high-resolution_2016}
@@ -75,31 +77,12 @@ Support for this work was provided by NASA under the GRACE Science Team, Interdi
 \bibliography{c:/work/glaciology}
 \bibliographystyle{igs}
 
-\vspace{5in}
-\begin{table}
-\caption{Annual balances ($B_a$) of Gulf of Alaska glaciers between 2004-2010 balance years in units of mass (Gt a$^{-1}$), and in specific units (m a$^{-1}$) calculated by dividing by the total ice area in the mascon solution domain (82,505 km$^{2}$). Balance years begin during the fall of the previous calendar year. $B_a$ is calculated as the difference between successive annual minima in Fig.~\ref{fig:allAK}.}\label{tab:GRACEbals}
-\centering
-\begin{tabular}{ccc}\hline
-Balance & $B_a$ & $B_a$  \\
-Year &  Gt a$^{-1}$ & m a$^{-1}$ \\[5pt]
-2004.0 & -125.0$\pm$13 & -1.5$\pm$0.16 \\
-2005.0 & -66.8$\pm$11 & -0.81$\pm$0.13 \\
-2006.0 & -54.5$\pm$11 & -0.66$\pm$0.13 \\
-2007.0 & -66.5$\pm$11 & -0.81$\pm$0.13 \\
-2008.0 & 15.0$\pm$10 & 0.18$\pm$0.12 \\
-2009.0 & -159.0$\pm$31 & -1.9$\pm$0.38 \\
-2010.0 & -43.1$\pm$31 & -0.52$\pm$0.38 \\
-\hline
-
-\end{tabular}
-\end{table}
-
 \begin{figure}
-\noindent\includegraphics[width=178mm]{figures/westernMap} \centering \caption{Mascons of the western GOA} \label{fig:summer}
+\noindent\includegraphics[width=178mm]{figures/westernMap} \centering \caption{Mascons of the western Gulf of Alaska.} \label{fig:wGOA_map}
 \end{figure}
 
 \begin{figure}
-\noindent\includegraphics[width=178mm]{figures/westernPlot} \centering \caption{Mascons of the western GOA} \label{fig:summer}
+\noindent\includegraphics[width=178mm]{figures/westernPlot} \centering \caption{Comparison of GRACE water balances prior to forward modeling \citep{luthcke_antarctica_2013}, (blue); modeled water balances using SnowModel \citep{beamer_high-resolution_2016} (green); and modeled water balance corrected by the forward modeling in this study (red). Subplots are arranged to approximately match the geographic layout of thier respective mascons in Fig. \ref{fig:wGOA_map}} \label{fig:wGOA_plot}
 \end{figure}
 
 \begin{figure}

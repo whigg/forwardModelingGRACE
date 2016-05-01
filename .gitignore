@@ -9,6 +9,10 @@
 *.cls
 *.sty
 *.bst
+*.aux
+*.bbl
+*.blg
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
