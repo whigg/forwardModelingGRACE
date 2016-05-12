@@ -79,10 +79,12 @@ all_sum.columns = ['GRACE','delta','mod','mod+delta']
 
 masconGeoms = pd.read_sql('SELECT mascon, ST_AsText(geom) AS geom FROM mascon_fit WHERE version = 14 AND mascon IN (1484, 1485, 1480, 1481, 1482, 1483, 1473, 1474, 1475, 1463, 1464, 1465, 1466, 1453, 1454, 1455, 1447)', engine)
 
+masconCentroids = pd.read_sql('SELECT mascon, ST_X(ST_Centroid(geom)) AS longitude, ST_Y(ST_Centroid(geom)) AS latitude FROM mascon_fit WHERE version = 14 AND mascon IN (1484, 1485, 1480, 1481, 1482, 1483, 1473, 1474, 1475, 1463, 1464, 1465, 1466, 1453, 1454, 1455, 1447)', engine)
 
 masconShapely = []
 for i in range(len(masconGeoms)):
     masconShapely.append(shwk.loads(masconGeoms.geom[i]))
+
 
 # Gets the longitude/latitude bounds for a glacier and assigns it to local variables. This is used in the plotting 
 # below to define the plot extent
@@ -121,8 +123,15 @@ gl.yformatter = LATITUDE_FORMATTER
 gl.xlabel_style = {'size': 10, 'color': 'black'}
 gl.ylabel_style = {'size': 10, 'color': 'black'}
 
+for i in range(len(masconCentroids)): 
+   longitudeVal = masconCentroids.longitude[i] 
+   latitudeVal = masconCentroids.latitude[i]  
+   label = str(masconCentroids.mascon[i]) 
+   plt.text(longitudeVal, latitudeVal, str(label), horizontalalignment='center') #,transform=ccrs.Geodetic())
+
 fig = ax.get_figure()
-fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\westernMap.pdf')
+fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\forwardModelingGRACE\figures\westernMap.png')
+
 
 # ______________________________
 # Western Gulf of Alaska : PLOTS
@@ -149,10 +158,13 @@ for i in range(nr*nc):
         (mod + FM).plot(ax = axes[plotPos[0],plotPos[1]], legend = False)
         axes[plotPos[0],plotPos[1]].set_title(str(mascon))
         axes[plotPos[0],plotPos[1]].get_xaxis().set_visible(False)
+        if plotPos == (3,3):
+            print('true')
+            axes[plotPos[0],plotPos[1]].legend([r'GRACE estimated','SnowModel', 'SnowModel + $\Delta$ forward model'],loc='lower left', bbox_to_anchor=(-0.2, -1.1))
     except:
         axes[plotPos[0],plotPos[1]].axis('off')
-
-fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\westernPlot.pdf')
+ 
+fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\forwardModelingGRACE\figures\westernPlot.png')
 
 
 # ____________________________
@@ -204,7 +216,7 @@ gl.xlabel_style = {'size': 10, 'color': 'black'}
 gl.ylabel_style = {'size': 10, 'color': 'black'}
 
 fig = ax.get_figure()
-fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\easternMap.pdf')
+fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\forwardModelingGRACE\figures\easternMap.png')
 
 # ______________________________
 # Eastern Gulf of Alaska : PLOTS
@@ -233,7 +245,7 @@ for i in range(nr*nc):
     except:
         axes[plotPos[0],plotPos[1]].axis('off')
 
-fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\easternPlot.pdf')
+fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\forwardModelingGRACE\figures\easternPlot.png')
 
 
 # _________________________________
@@ -285,7 +297,7 @@ gl.xlabel_style = {'size': 10, 'color': 'black'}
 gl.ylabel_style = {'size': 10, 'color': 'black'}
 
 fig = ax.get_figure()
-fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\southeasternMap.pdf')
+fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\forwardModelingGRACE\figures\southeasternMap.png')
 
 # ___________________________________
 # Southeastern Gulf of Alaska : PLOTS
@@ -315,4 +327,4 @@ for i in range(nr*nc):
     except:
         axes[plotPos[0],plotPos[1]].axis('off')
 
-fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\GRACEPaper\figures\southeasternPlot.pdf')
+fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\forwardModelingGRACE\figures\southeasternPlot.png')
