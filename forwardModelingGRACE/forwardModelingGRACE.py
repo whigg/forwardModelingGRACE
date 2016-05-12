@@ -127,7 +127,7 @@ for i in range(len(masconCentroids)):
    longitudeVal = masconCentroids.longitude[i] 
    latitudeVal = masconCentroids.latitude[i]  
    label = str(masconCentroids.mascon[i]) 
-   plt.text(longitudeVal, latitudeVal, str(label), horizontalalignment='center') #,transform=ccrs.Geodetic())
+   plt.text(longitudeVal, latitudeVal, str(label), horizontalalignment='center',transform=ccrs.Geodetic())
 
 fig = ax.get_figure()
 fig.savefig(r'C:\Users\Anthony Arendt\Google Drive\forwardModelingGRACE\figures\westernMap.png')
