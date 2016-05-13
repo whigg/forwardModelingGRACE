@@ -77,7 +77,20 @@ all_sum.columns = ['GRACE','delta','mod','mod+delta']
 # Western Gulf of Alaska : MAP
 # ____________________________
 
-masconGeoms = pd.read_sql('SELECT mascon, ST_AsText(geom) AS geom FROM mascon_fit WHERE version = 14 AND mascon IN (1484, 1485, 1480, 1481, 1482, 1483, 1473, 1474, 1475, 1463, 1464, 1465, 1466, 1453, 1454, 1455, 1447)', engine)
+mascons = [1484, 1485, 1480, 1481, 1482, 1483, 1473, 1474, 1475, 1463, 1464, 1465, 1466, 1453, 1454, 1455, 1447]
+
+def masconQuery(mascons):
+   """ function to query mascon locations for plotting
+    
+   parameters: 
+   mascons = list of mascon numbers
+
+   returns: 
+   masconGeoms = 
+   masconCentroids =    
+   """
+    
+masconGeoms = pd.read_sql('SELECT mascon, ST_AsText(geom) AS geom FROM mascon_fit WHERE version = 14 AND mascon IN ()', engine)
 
 masconCentroids = pd.read_sql('SELECT mascon, ST_X(ST_Centroid(geom)) AS longitude, ST_Y(ST_Centroid(geom)) AS latitude FROM mascon_fit WHERE version = 14 AND mascon IN (1484, 1485, 1480, 1481, 1482, 1483, 1473, 1474, 1475, 1463, 1464, 1465, 1466, 1453, 1454, 1455, 1447)', engine)
 
